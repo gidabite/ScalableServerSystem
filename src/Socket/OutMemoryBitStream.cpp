@@ -6,7 +6,8 @@
  */
 
 #include "OutMemoryBitStream.h"
-
+#include <iostream>
+using namespace std;
 OutMemoryBitStream::OutMemoryBitStream():mBuffer(nullptr), mBitHead(0), mBitCapacity(0) {
 	this->ReallocBuffer(256);
 }

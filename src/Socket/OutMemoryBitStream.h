@@ -10,6 +10,7 @@
 
 #include "memory"
 #include "cstring"
+
 class OutMemoryBitStream {
 public:
 	OutMemoryBitStream();
@@ -40,4 +41,6 @@ template<typename T> void OutMemoryBitStream::WriteBytes(T inData){
 	static_assert(std::is_arithmetic<T>::value || std::is_enum<T>::value, "Generic Write only support primitive data types");
 	WriteBits(&inData, sizeof(T) << 3);
 }
+
+
 #endif /* SOCKET_OUTMEMORYBITSTREAM_H_ */

@@ -7,26 +7,28 @@
 
 #include "BaseObject.h"
 
+uint32_t BaseObject::classId = 1;
+
 BaseObject::BaseObject(Vector3 pos, Vector3 rot, Vector3 sc){
-	this->position = pos;
-	this->rotation = rot;
-	this->scale = sc;
+	this->mPosition = pos;
+	this->mRotation = rot;
+	this->mScale = sc;
 }
 BaseObject::BaseObject(Position pos, Rotation rot, Scale sc){
-	this->position = pos;
-	this->rotation = rot;
-	this->scale = sc;
+	this->mPosition = pos;
+	this->mRotation = rot;
+	this->mScale = sc;
 }
-void BaseObject::Serialization(OutMemoryBitStream& out){
-	out.Write(position.x);
-	out.Write(position.y);
-	out.Write(position.z);
-	out.Write(rotation.x);
-	out.Write(rotation.y);
-	out.Write(rotation.z);
-	out.Write(scale.x);
-	out.Write(scale.y);
-	out.Write(scale.z);
+void BaseObject::Serialize(OutMemoryBitStream& out){
+	out.Write(mPosition.x);
+	out.Write(mPosition.y);
+	out.Write(mPosition.z);
+	out.Write(mRotation.x);
+	out.Write(mRotation.y);
+	out.Write(mRotation.z);
+	out.Write(mScale.x);
+	out.Write(mScale.y);
+	out.Write(mScale.z);
 }
 
 BaseObject::~BaseObject() {
