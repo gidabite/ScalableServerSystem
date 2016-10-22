@@ -17,7 +17,7 @@ BaseObject::BaseObject(Position pos, Rotation rot, Scale sc){
 	this->rotation = rot;
 	this->scale = sc;
 }
-void BaseObject::Serialization(OutMemoryStream& out){
+void BaseObject::Serialization(OutMemoryBitStream& out){
 	out.Write(position.x);
 	out.Write(position.y);
 	out.Write(position.z);

@@ -11,12 +11,13 @@
 #include "../PhysicalParameters/Position.h";
 #include "../PhysicalParameters/Rotation.h";
 #include "../PhysicalParameters/Scale.h";
-#include "../Socket/OutMemoryStream.h"
+#include "../Socket/OutMemoryBitStream.h"
+
 class BaseObject {
 public:
 	BaseObject(Vector3 pos, Vector3 rot, Vector3 sc);
 	BaseObject(Position pos, Rotation rot, Scale sc);
-	virtual void Serialization(OutMemoryStream& out);
+	virtual void Serialization(OutMemoryBitStream& out);
 	virtual ~BaseObject();
 private:
 	Position position;

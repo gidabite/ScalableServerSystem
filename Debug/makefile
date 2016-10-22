@@ -47,7 +47,7 @@ all: Server
 Server: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C++ Linker'
-	g++ -L/home/gidabite/workspace/Server/bullet-2.82-r2704/build/src/BulletCollision -o "Server" $(OBJS) $(USER_OBJS) $(LIBS)
+	g++  -o "Server" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 

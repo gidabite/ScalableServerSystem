@@ -11,8 +11,8 @@
 #include "Socket/SocketUtil.h";
 #include "Socket/UDPSocket.h";
 #include "Socket/SocketAddressFactory.h";
-#include "Socket/OutMemoryStream.h"
 #include "GameObject/BaseObject.h";
+#include "Socket/OutMemoryBitStream.h"
 using namespace std;
 
 std::vector<BaseObject> objects;
@@ -30,9 +30,9 @@ int main() {
 		int readByteCount = s_ptr->ReceiveFrom((inBuff), 100, outAddr);
 		if (strcmp(inBuff, "HELLO") == 0){
 			objects.push_back(BaseObject(Position(2,1,3), Rotation(1,0,2.5), Scale(3,2,1)));
-			OutMemoryStream out;
+			OutMemoryBitStream out;
 			objects.back().Serialization(out);
-			s_ptr->SendTo(out.GetBufferPtr(), out.GetLength(), outAddr);
+			s_ptr->SendTo(out.GetBufferPtr(), out.GetByteLength(), outAddr);
 		}
 		//cout << (char *)inBuff<< endl;
 		//cout << readByteCount;
