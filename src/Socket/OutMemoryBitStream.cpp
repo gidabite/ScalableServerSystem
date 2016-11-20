@@ -8,7 +8,7 @@
 #include "OutMemoryBitStream.h"
 #include <iostream>
 using namespace std;
-OutMemoryBitStream::OutMemoryBitStream():mBuffer(nullptr), mBitHead(0), mBitCapacity(0) {
+OutMemoryBitStream::OutMemoryBitStream():mBuffer(nullptr), mBitHead(8), mBitCapacity(0) {
 	this->ReallocBuffer(256);
 }
 
@@ -44,6 +44,7 @@ void OutMemoryBitStream::WriteBits(uint8_t inData, size_t inBitCount){
 		mBuffer[byteOffset +1] = inData >> bitsFreeThisByte;
 	}
 	mBitHead = nextBitHead;
+	mBuffer[0] = this->GetByteLength()*8 - mBitHead;
 }
 
 void OutMemoryBitStream::WriteBits(const void* inData, size_t inBitCount){

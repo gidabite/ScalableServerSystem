@@ -15,21 +15,44 @@ ClientMeneger::ClientMeneger(AddressFamily af, const string& inString): mNextNet
 
 void ClientMeneger::Wait() {
 	char* inBuff = new char[1024];
-	InputMemoryBitStream in(inBuff, 1024);
-
-	ClientObject newClient;
-	int readByteCount = socket->ReceiveFrom(inBuff, 1024, newClient.GetAddress());
+	ClientObject* client = new ClientObject();
+	int readByteCount = socket->ReceiveFrom(inBuff, 1024, client->GetAddress());
+	InputMemoryBitStream in(inBuff, readByteCount*8);
 	//ClientTypePocket CTP;
-	char* ans = new char[6];
-	in.ReadBytes(ans, 6);
-	if (strcmp(ans,"HELLO") == 0){
-		newClient.AssociatedWhitObject(new BaseObject(Position(2,1,3), Rotation(1,0,2.5), Scale(3,2,1))); //СОЗДАВАТЬ НЕ ЗДЕСЬ!!!
-		this->mNetworkIdToClientObjectMap[mNextNetworkIdClient] = &newClient;
-		mNextNetworkIdClient++;
-		Pocket pocket(PT_RepData);
-		pocket.AddObject(newClient.GetObj());
-		socket->SendTo(pocket.GetStream().GetBufferPtr(), pocket.GetStream().GetByteLength(), newClient.GetAddress());
-	} else {
+	int PocketT;
+	while(in.GetRemainingBitCount() != 0){
+		uint32_t u = in.GetRemainingBitCount();
+		in.ReadBits(&PocketT, 3);
+		if (PocketT == PT_HELLO){
+			client->AssociatedWhitObject(new BaseObject(Position(2,1,3), Rotation(1,0,2.5), Scale(3,2,1))); //СОЗДАВАТЬ НЕ ЗДЕСЬ!!!
+			client->setNetworkId(this->mNextNetworkIdClient);
+			this->mNetworkIdToClientObjectMap[this->mNextNetworkIdClient] = client;
+			mNextNetworkIdClient++;
+			Pocket pocket(PT_REPDATA);
+			pocket.AddObject(client->GetObj());
+			socket->SendTo(pocket.GetStream().GetBufferPtr(), pocket.GetStream().GetByteLength(), client->GetAddress());
+		} else delete client;
+		if (PocketT == PT_ACTION){
+			uint32_t networkID;
+			in.Read(networkID);
+			ClientObject* client =  this->mNetworkIdToClientObjectMap[networkID];
+			uint32_t mask;
+			in.ReadBits(&mask, 5);
+			float up, down, left, right;
+			if (mask && IS_UP == IS_UP){
+				in.Read(up);
+			}
+			if (mask && IS_DOWN == IS_DOWN){
+				in.Read(down);
+			}
+			if (mask && IS_LEFT == IS_LEFT){
+				in.Read(left);
+			}
+			if (mask && IS_RIGHT == IS_RIGHT){
+				in.Read(right);
+			}
+			client->addInputState(InputState(up,down,left,right));
+		}
 	}
 }
 

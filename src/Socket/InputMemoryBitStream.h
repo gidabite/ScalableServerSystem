@@ -17,7 +17,12 @@ public:
 	mBuffer( inBuffer ),
 	mBitCapacity( inBitCount ),
 	mBitHead( 0 ),
-	mIsBufferOwner( false ) {}
+	mIsBufferOwner( false ) {
+		uint8_t y;
+		ReadBytes(&y, 1);
+		mBitCapacity -= y;
+		mBitHead = 8;
+	}
 
 	InputMemoryBitStream( const InputMemoryBitStream& inOther ) :
 	mBitCapacity( inOther.mBitCapacity ),

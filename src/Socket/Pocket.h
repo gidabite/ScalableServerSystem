@@ -14,8 +14,10 @@
 
 enum PocketType{
 	PT_HELLO,
+	PT_ACTION,
 	PT_DISCONNECT,
-	PT_RepData,
+	PT_WELC,
+	PT_REPDATA,
 	PT_MAX
 };
 

@@ -4,13 +4,16 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../src/GameObject/BaseObject.cpp 
+../src/GameObject/BaseObject.cpp \
+../src/GameObject/InputState.cpp 
 
 OBJS += \
-./src/GameObject/BaseObject.o 
+./src/GameObject/BaseObject.o \
+./src/GameObject/InputState.o 
 
 CPP_DEPS += \
-./src/GameObject/BaseObject.d 
+./src/GameObject/BaseObject.d \
+./src/GameObject/InputState.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
