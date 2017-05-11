@@ -27,4 +27,5 @@ src/Socket \
 src \
 src/PhysicalParameters \
 src/GameObject \
+src/Components \
 

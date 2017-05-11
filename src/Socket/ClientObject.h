@@ -27,6 +27,7 @@ public:
 	void addInputState(InputState ins);
 	virtual ~ClientObject();
 private:
+	uint32_t time = 0;
 	SocketAddress adr;
 	BaseObject* obj;
 	uint32_t mNetworkId;

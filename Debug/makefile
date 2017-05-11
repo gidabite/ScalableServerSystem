@@ -11,6 +11,7 @@ RM := rm -rf
 -include src/Socket/subdir.mk
 -include src/PhysicalParameters/subdir.mk
 -include src/GameObject/subdir.mk
+-include src/Components/subdir.mk
 -include src/subdir.mk
 -include subdir.mk
 -include objects.mk
@@ -47,7 +48,7 @@ all: Server
 Server: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C++ Linker'
-	g++  -o "Server" $(OBJS) $(USER_OBJS) $(LIBS)
+	g++ -pthread -o "Server" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 

@@ -1,4 +1,4 @@
-src/Server.d: ../src/Server.cpp ../src/Socket/incl.h \
+src/Components/InputComponent.d: ../src/Components/InputComponent.cpp \
  ../src/Components/InputComponent.h \
  ../src/Components/../Socket/SocketUtil.h \
  ../src/Components/../Socket/incl.h \
@@ -24,8 +24,6 @@ src/Server.d: ../src/Server.cpp ../src/Socket/incl.h \
  ../src/Components/../Socket/SocketAddressFactory.h \
  ../src/Components/../Socket/Pocket.h \
  ../src/Components/../Socket/InputMemoryBitStream.h
-
-../src/Socket/incl.h:
 
 ../src/Components/InputComponent.h:
 

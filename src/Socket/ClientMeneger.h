@@ -22,14 +22,18 @@ enum ClientTypePocket{
 
 class ClientMeneger {
 public:
-	ClientMeneger(AddressFamily af, const string& inString);
+	static ClientMeneger* init(AddressFamily af, const string& inString);
+	static ClientMeneger* init();
 	void Wait();
-	virtual ~ClientMeneger();
+
 private:
+	ClientMeneger(AddressFamily af, const string& inString);
 	uint32_t mNextNetworkIdClient;
 	std::unordered_map<uint32_t, ClientObject*> mNetworkIdToClientObjectMap;
 	UDPSocketPtr socket;
 	void AddClient(SocketAddress& adr);
+	virtual ~ClientMeneger();
+	static ClientMeneger* cm;
 };
 
 #endif /* SOCKET_CLIENTMENEGER_H_ */
