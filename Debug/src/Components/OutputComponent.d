@@ -1,5 +1,5 @@
-src/Server.d: ../src/Server.cpp ../src/Socket/incl.h \
- ../src/Components/InputComponent.h \
+src/Components/OutputComponent.d: ../src/Components/OutputComponent.cpp \
+ ../src/Components/OutputComponent.h \
  ../src/Components/../Socket/SocketUtil.h \
  ../src/Components/../Socket/incl.h \
  ../src/Components/../Socket/UDPSocket.h \
@@ -23,12 +23,9 @@ src/Server.d: ../src/Server.cpp ../src/Socket/incl.h \
  ../src/Components/../Socket/SocketUtil.h \
  ../src/Components/../Socket/SocketAddressFactory.h \
  ../src/Components/../Socket/Pocket.h \
- ../src/Components/../Socket/InputMemoryBitStream.h \
- ../src/Components/OutputComponent.h ../src/Components/HandlerComponent.h
+ ../src/Components/../Socket/InputMemoryBitStream.h
 
-../src/Socket/incl.h:
-
-../src/Components/InputComponent.h:
+../src/Components/OutputComponent.h:
 
 ../src/Components/../Socket/SocketUtil.h:
 
@@ -77,7 +74,3 @@ src/Server.d: ../src/Server.cpp ../src/Socket/incl.h \
 ../src/Components/../Socket/Pocket.h:
 
 ../src/Components/../Socket/InputMemoryBitStream.h:
-
-../src/Components/OutputComponent.h:
-
-../src/Components/HandlerComponent.h:

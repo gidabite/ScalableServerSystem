@@ -7,6 +7,7 @@
 
 #include "ClientObject.h"
 #include "../GameObject/BaseObject.h"
+
 ClientObject::ClientObject(){
 
 }
@@ -25,3 +26,6 @@ ClientObject::~ClientObject() {
 	// TODO Auto-generated destructor stub
 }
 
+vector<InputState>* ClientObject::getInputState() {
+	return &this->mInput;
+}

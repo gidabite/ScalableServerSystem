@@ -13,18 +13,26 @@ enum InputStateEnumeration{
 	IS_DOWN = 0x02,
 	IS_LEFT = 0x04,
 	IS_RIGHT = 0x08,
-	IS_JUMP = 0x10
+	IS_JUMP = 0x10,
+	IS_CREATE = 0x20
 };
 
 class InputState {
 public:
-	InputState(float up, float down, float left, float right): mUp(up), mDown(down), mLeft(left), mRight(right)	{};
+	InputState(InputStateEnumeration state, float value): state(state), value(value){};
 	virtual ~InputState();
+
+InputStateEnumeration getState() const {
+	return state;
+}
+
+float getValue() const {
+	return value;
+}
+
 private:
-	float mUp;
-	float mDown;
-	float mLeft;
-	float mRight;
+	float value;
+	InputStateEnumeration state;
 };
 
 #endif /* GAMEOBJECT_INPUTSTATE_H_ */

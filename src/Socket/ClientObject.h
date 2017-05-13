@@ -8,8 +8,8 @@
 #ifndef SOCKET_CLIENTOBJECT_H_
 #define SOCKET_CLIENTOBJECT_H_
 
-#include "SocketAddress.h";
-#include "../GameObject/InputState.h";
+#include "SocketAddress.h"
+#include "../GameObject/InputState.h"
 #include <vector>
 class BaseObject;
 
@@ -25,6 +25,7 @@ public:
 	void AssociatedWhitObject(BaseObject*  obj);
 	void setNetworkId(uint32_t networkId);
 	void addInputState(InputState ins);
+	vector<InputState>* getInputState();
 	virtual ~ClientObject();
 private:
 	uint32_t time = 0;

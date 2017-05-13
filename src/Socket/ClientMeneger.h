@@ -8,9 +8,9 @@
 #ifndef SOCKET_CLIENTMENEGER_H_
 #define SOCKET_CLIENTMENEGER_H_
 #include "ClientObject.h"
-#include "SocketUtil.h";
-#include "SocketAddressFactory.h";
-#include "Pocket.h";
+#include "SocketUtil.h"
+#include "SocketAddressFactory.h"
+#include "Pocket.h"
 #include "InputMemoryBitStream.h"
 
 enum ClientTypePocket{
@@ -24,7 +24,12 @@ class ClientMeneger {
 public:
 	static ClientMeneger* init(AddressFamily af, const string& inString);
 	static ClientMeneger* init();
+	const std::unordered_map<uint32_t, ClientObject*>& getClient();
 	void Wait();
+
+	const UDPSocketPtr& getSocket() const {
+		return socket;
+	}
 
 private:
 	ClientMeneger(AddressFamily af, const string& inString);

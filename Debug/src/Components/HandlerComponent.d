@@ -1,9 +1,12 @@
-src/Server.d: ../src/Server.cpp ../src/Socket/incl.h \
- ../src/Components/InputComponent.h \
- ../src/Components/../Socket/SocketUtil.h \
- ../src/Components/../Socket/incl.h \
- ../src/Components/../Socket/UDPSocket.h \
+src/Components/HandlerComponent.d: ../src/Components/HandlerComponent.cpp \
+ ../src/Components/HandlerComponent.h \
+ ../src/Components/../Socket/ClientObject.h \
  ../src/Components/../Socket/SocketAddress.h \
+ ../src/Components/../Socket/incl.h \
+ ../src/Components/../Socket/../GameObject/InputState.h \
+ ../src/Components/../Socket/ClientMeneger.h \
+ ../src/Components/../Socket/ClientObject.h \
+ ../src/Components/../Socket/SocketUtil.h \
  ../src/Components/../Socket/UDPSocket.h \
  ../src/Components/../Socket/SocketAddressFactory.h \
  ../src/Components/../Socket/Pocket.h \
@@ -16,27 +19,23 @@ src/Server.d: ../src/Server.cpp ../src/Socket/incl.h \
  ../src/Components/../Socket/../GameObject/../PhysicalParameters/Scale.h \
  ../src/Components/../Socket/../GameObject/../Socket/OutMemoryBitStream.h \
  ../src/Components/../Socket/OutMemoryBitStream.h \
- ../src/Components/../Socket/ClientObject.h \
- ../src/Components/../Socket/../GameObject/InputState.h \
- ../src/Components/../Socket/ClientMeneger.h \
- ../src/Components/../Socket/ClientObject.h \
- ../src/Components/../Socket/SocketUtil.h \
- ../src/Components/../Socket/SocketAddressFactory.h \
- ../src/Components/../Socket/Pocket.h \
- ../src/Components/../Socket/InputMemoryBitStream.h \
- ../src/Components/OutputComponent.h ../src/Components/HandlerComponent.h
+ ../src/Components/../Socket/InputMemoryBitStream.h
 
-../src/Socket/incl.h:
+../src/Components/HandlerComponent.h:
 
-../src/Components/InputComponent.h:
+../src/Components/../Socket/ClientObject.h:
 
-../src/Components/../Socket/SocketUtil.h:
+../src/Components/../Socket/SocketAddress.h:
 
 ../src/Components/../Socket/incl.h:
 
-../src/Components/../Socket/UDPSocket.h:
+../src/Components/../Socket/../GameObject/InputState.h:
 
-../src/Components/../Socket/SocketAddress.h:
+../src/Components/../Socket/ClientMeneger.h:
+
+../src/Components/../Socket/ClientObject.h:
+
+../src/Components/../Socket/SocketUtil.h:
 
 ../src/Components/../Socket/UDPSocket.h:
 
@@ -62,22 +61,4 @@ src/Server.d: ../src/Server.cpp ../src/Socket/incl.h \
 
 ../src/Components/../Socket/OutMemoryBitStream.h:
 
-../src/Components/../Socket/ClientObject.h:
-
-../src/Components/../Socket/../GameObject/InputState.h:
-
-../src/Components/../Socket/ClientMeneger.h:
-
-../src/Components/../Socket/ClientObject.h:
-
-../src/Components/../Socket/SocketUtil.h:
-
-../src/Components/../Socket/SocketAddressFactory.h:
-
-../src/Components/../Socket/Pocket.h:
-
 ../src/Components/../Socket/InputMemoryBitStream.h:
-
-../src/Components/OutputComponent.h:
-
-../src/Components/HandlerComponent.h:

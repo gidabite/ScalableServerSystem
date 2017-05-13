@@ -17,26 +17,28 @@ void ClientMeneger::Wait() {
 	char* inBuff = new char[1024];
 	ClientObject* client = new ClientObject();
 	int readByteCount = socket->ReceiveFrom(inBuff, 1024, client->GetAddress());
+	bool isNew = false;
 	InputMemoryBitStream in(inBuff, readByteCount*8);
 	//ClientTypePocket CTP;
 	uint8_t PocketT;
 	while(in.GetRemainingBitCount() != 0){
-		uint32_t u = in.GetRemainingBitCount();
 		in.ReadBits(&PocketT, 3);
 		switch(PocketT)
 		{
 			case PT_HELLO:{
-				client->AssociatedWhitObject(new BaseObject(Position(2,1,3), Rotation(1,0,2.5), Scale(3,2,1))); //СОЗДАВАТЬ НЕ ЗДЕСЬ!!!
+				client->AssociatedWhitObject(new BaseObject(Position(0,0,0), Rotation(0,0,0), Scale(1,1,1)));
 				client->setNetworkId(this->mNextNetworkIdClient);
 				this->mNetworkIdToClientObjectMap[this->mNextNetworkIdClient] = client;
 				mNextNetworkIdClient++;
-				Pocket pocket(PT_REPDATA);
-				pocket.AddObject(client->GetObj());
-				socket->SendTo(pocket.GetStream().GetBufferPtr(), pocket.GetStream().GetByteLength(), client->GetAddress());
+				client->addInputState(InputState(InputStateEnumeration::IS_CREATE, 0));
+				//Pocket pocket(PT_REPDATA);
+				//pocket.AddObject(client->GetObj());
+				//socket->SendTo(pocket.GetStream().GetBufferPtr(), pocket.GetStream().GetByteLength(), client->GetAddress());
+				isNew = true;
 				break;
 			}
-			delete client;
 			case PT_ACTION:{
+				if (!isNew) delete client;
 				uint32_t networkID;
 				in.Read(networkID);
 				ClientObject* client =  this->mNetworkIdToClientObjectMap[networkID];
@@ -84,3 +86,7 @@ ClientMeneger::~ClientMeneger() {
 }
 
 ClientMeneger* ClientMeneger::cm = 0;
+
+const std::unordered_map<uint32_t, ClientObject*>& ClientMeneger::getClient() {
+	return this->mNetworkIdToClientObjectMap;
+}

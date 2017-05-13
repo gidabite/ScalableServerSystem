@@ -4,13 +4,19 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../src/Components/InputComponent.cpp 
+../src/Components/HandlerComponent.cpp \
+../src/Components/InputComponent.cpp \
+../src/Components/OutputComponent.cpp 
 
 OBJS += \
-./src/Components/InputComponent.o 
+./src/Components/HandlerComponent.o \
+./src/Components/InputComponent.o \
+./src/Components/OutputComponent.o 
 
 CPP_DEPS += \
-./src/Components/InputComponent.d 
+./src/Components/HandlerComponent.d \
+./src/Components/InputComponent.d \
+./src/Components/OutputComponent.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

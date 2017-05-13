@@ -9,6 +9,7 @@
 #define PHYSICALPARAMETERS_POSITION_H_
 
 #include "Axis.h"
+#include "Vector3.h"
 
 class Position: public Axis {
 public:

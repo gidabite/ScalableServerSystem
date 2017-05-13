@@ -9,7 +9,7 @@
 #define SOCKET_NETWORKMENEGER_H_
 
 #include "../GameObject/BaseObject.h"
-#include <unordered_map>;
+#include <unordered_map>
 
 class NetworkMeneger {
 public:

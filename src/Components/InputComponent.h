@@ -19,8 +19,8 @@
 using namespace std;
 
 class InputComponent {
-public:
 
+public:
 	static InputComponent& init();
 	void go();
 	void join();

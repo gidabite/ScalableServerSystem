@@ -8,10 +8,10 @@
 #ifndef GAMEOBJECT_BASEOBJECT_H_
 #define GAMEOBJECT_BASEOBJECT_H_S
 
-#include "../PhysicalParameters/Position.h";
-#include "../PhysicalParameters/Rotation.h";
-#include "../PhysicalParameters/Scale.h";
-#include "../Socket/OutMemoryBitStream.h";
+#include "../PhysicalParameters/Position.h"
+#include "../PhysicalParameters/Rotation.h"
+#include "../PhysicalParameters/Scale.h"
+#include "../Socket/OutMemoryBitStream.h"
 
 
 
@@ -22,10 +22,20 @@ public:
 	BaseObject(Position pos, Rotation rot, Scale sc);
 	virtual void Serialize(OutMemoryBitStream& out);
 	virtual ~BaseObject();
+
+	bool isIsChanged() const {
+		return isChanged;
+	}
+
+	void setIsChanged(bool isChanged) {
+		this->isChanged = isChanged;
+	}
+
 private:
 	Position mPosition;
 	Rotation mRotation;
 	Scale mScale;
+	bool isChanged = false;
 
 };
 
