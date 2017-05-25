@@ -22,11 +22,13 @@ public:
 	static OutputComponent& init();
 	void go();
 	void join();
+	void Cancel();
 private:
 	thread* m_thr;
 	static void run();
 	OutputComponent();
 	virtual ~OutputComponent();
+	static bool isRun;
 
 	OutputComponent(OutputComponent const&) = delete;
 	OutputComponent& operator= (OutputComponent const&) = delete;

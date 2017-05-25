@@ -17,10 +17,12 @@ public:
 	 int Bind(const SocketAddress& inToAddress);
 	 int SendTo(const void* inData, int inLen, const SocketAddress& inTo);
 	 int ReceiveFrom(void* inBuffer, int inLen, SocketAddress& outFrom);
+	 void SetNonBlock(bool isNonBlock);
 private:
 	 friend class SocketUtil;
 	 UDPSocket(int inSocket);
 	 int mSocket;
+	 bool isNonBlock = false;
 };
 typedef std::shared_ptr<UDPSocket> UDPSocketPtr;
 

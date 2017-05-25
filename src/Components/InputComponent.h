@@ -24,14 +24,17 @@ public:
 	static InputComponent& init();
 	void go();
 	void join();
+	void Cancel();
 private:
 	thread* m_thr;
 	static void run();
 	InputComponent();
 	virtual ~InputComponent();
+	static bool isRun;
 
 	InputComponent(InputComponent const&) = delete;
 	InputComponent& operator= (InputComponent const&) = delete;
 };
+
 
 #endif /* COMPONENTS_INPUTCOMPONENT_H_ */

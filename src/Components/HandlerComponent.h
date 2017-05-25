@@ -20,14 +20,17 @@ public:
 	static HandlerComponent& init();
 	void go();
 	void join();
+	void Cancel();
 private:
 	thread* m_thr;
 	static void run();
 	HandlerComponent();
 	virtual ~HandlerComponent();
+	static bool isRun;
 
 	HandlerComponent(HandlerComponent const&) = delete;
 	HandlerComponent& operator= (HandlerComponent const&) = delete;
 };
 
 #endif /* COMPONENTS_HANDLERCOMPONENT_H_ */
+

@@ -23,7 +23,7 @@ void ClientObject::addInputState(InputState ins){
 	this->mInput.push_back(ins);
 }
 ClientObject::~ClientObject() {
-	// TODO Auto-generated destructor stub
+
 }
 
 vector<InputState>* ClientObject::getInputState() {

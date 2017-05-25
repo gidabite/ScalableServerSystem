@@ -8,6 +8,7 @@
 #include "InputComponent.h"
 #include "iostream"
 
+bool InputComponent::isRun = true;
 
 InputComponent::InputComponent() {
 
@@ -37,11 +38,14 @@ void InputComponent::run() {
 	//ClientMeneger cm(INET, "192.168.43.215:45678");//"192.168.1.45:45678");
 	cout << "Start Input Component" << endl;
 	int i = 0;
-	while (true) {
-		i++;
-		ClientMeneger::init()->Wait();
-		//cout << (char *)inBuff<< endl;
-		//cout << readByteCount;
-		cout << i << endl;
+	while (isRun) {
+		//for (int i = 0; i < 15; i ++){
+			ClientMeneger::init()->Wait();
+		//}
+		usleep(5);
 	}
+}
+
+void InputComponent::Cancel() {
+	this->isRun = false;
 }

@@ -7,6 +7,8 @@
 
 #include "OutputComponent.h"
 
+bool OutputComponent::isRun = true;
+
 OutputComponent::OutputComponent() {
 
 }
@@ -22,7 +24,6 @@ OutputComponent& OutputComponent::init(){
 
 	static OutputComponent InpComp;
 	return InpComp;
-
 }
 
 void OutputComponent::join() {
@@ -34,7 +35,7 @@ void OutputComponent::run() {
 	//ClientMeneger::init(INET, "192.168.43.215:45678");
 	//ClientMeneger cm(INET, "192.168.43.215:45678");//"192.168.1.45:45678");
 	cout << "Start Output Component" << endl;
-	while (true) {
+	while (isRun) {
 		std::unordered_map<uint32_t, ClientObject*> clients = ClientMeneger::init()->getClient();
 		for (auto it = clients.begin(); it != clients.end(); it++){
 			Pocket pocket(PT_REPDATA);
@@ -45,4 +46,8 @@ void OutputComponent::run() {
 			}
 		}
 	}
+}
+
+void OutputComponent::Cancel() {
+	this->isRun = false;
 }

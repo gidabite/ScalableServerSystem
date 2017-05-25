@@ -45,7 +45,7 @@ int UDPSocket::ReceiveFrom(void* inToRecive, int inMaxLen, SocketAddress& outFro
 								 0,
 								 &outFrom.mSockAddr,
 								 &fromLength);
-	if (readByteCount >= 0){
+	if (isNonBlock || readByteCount >= 0){
 		return readByteCount;
 	} else {
 		cout << errno << endl;
@@ -62,3 +62,9 @@ UDPSocket::~UDPSocket() {
 #endif
 }
 
+void UDPSocket::SetNonBlock(bool isNonBlock) {
+	int fl = fcntl(mSocket, F_GETFL, 0);
+	fl = isNonBlock ? (fl | O_NONBLOCK):(fl & ~O_NONBLOCK);
+	fcntl(mSocket, F_SETFL, fl);
+	this->isNonBlock = true;
+}
