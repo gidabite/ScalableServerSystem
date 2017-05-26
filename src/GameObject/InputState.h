@@ -8,30 +8,53 @@
 #ifndef GAMEOBJECT_INPUTSTATE_H_
 #define GAMEOBJECT_INPUTSTATE_H_
 
+
+#include "../PhysicalParameters/Position.h"
+#include "../PhysicalParameters/Rotation.h"
+#include "../PhysicalParameters/Scale.h"
+
 enum InputStateEnumeration{
-	IS_UP = 0x01,
-	IS_DOWN = 0x02,
-	IS_LEFT = 0x04,
-	IS_RIGHT = 0x08,
-	IS_JUMP = 0x10,
-	IS_CREATE = 0x20
+	IS_CREATE = 0x01,
+	IS_CHANGE = 0x02
 };
 
 class InputState {
 public:
-	InputState(InputStateEnumeration state, float value): state(state), value(value){};
+	InputState(InputStateEnumeration state): state(state){};
 	virtual ~InputState();
 
 InputStateEnumeration getState() const {
 	return state;
 }
 
-float getValue() const {
-	return value;
-}
+	const Position& getPos() const {
+		return pos;
+	}
+
+	void setPos(const Position& pos = Position(0, 0, 0)) {
+		this->pos = pos;
+	}
+
+	const Rotation& getRot() const {
+		return rot;
+	}
+
+	void setRot(const Rotation& rot = Rotation(0, 0, 0)) {
+		this->rot = rot;
+	}
+
+	const Scale& getSc() const {
+		return sc;
+	}
+
+	void setSc(const Scale& sc = Scale(0, 0, 0)) {
+		this->sc = sc;
+	}
 
 private:
-	float value;
+	Position pos = Position(0,0,0);
+	Rotation rot = Rotation(0,0,0);
+	Scale sc = Scale(1,1,1);
 	InputStateEnumeration state;
 };
 

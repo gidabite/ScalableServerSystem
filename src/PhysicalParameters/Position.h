@@ -17,6 +17,7 @@ public:
 	Position(double x, double y, double z);
 	void operator=(Position pos);
 	void operator=(Vector3 pos);
+	bool operator==(const Position pos) const;
 
 	virtual ~Position();
 };

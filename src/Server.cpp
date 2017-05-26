@@ -33,7 +33,7 @@ int main(int argc, char* argv[]) {
 		perror("open");
 	    return 1;
 	}
-	int i = 0;;
+	int i = 0;
 	if ( read(fd, &i, sizeof(int)) == -1 )
 		 perror("read() failed. CPU process");
 	close(fd);

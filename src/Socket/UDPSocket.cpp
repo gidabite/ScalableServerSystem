@@ -29,9 +29,10 @@ int UDPSocket::SendTo(const void* inData, int inLen, const SocketAddress& inTo){
 							   &inTo.mSockAddr,
 							   inTo.GetSize());
 
-	if (byteSentCount >= 0){
+	if (isNonBlock || byteSentCount >= 0){
 		return byteSentCount;
 	} else {
+		cout << errno << endl;
 		SocketUtil::ReportError("UDPSOcket::SendTo");
 		return -1;
 	}

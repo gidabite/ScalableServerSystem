@@ -15,6 +15,7 @@
 #include "../Socket/Pocket.h"
 #include "../Socket/ClientObject.h"
 #include "../Socket/ClientMeneger.h"
+#include <ctime>
 
 class OutputComponent {
 

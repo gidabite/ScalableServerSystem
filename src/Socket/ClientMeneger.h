@@ -13,6 +13,7 @@
 #include "Pocket.h"
 #include "InputMemoryBitStream.h"
 
+
 enum ClientTypePocket{
 	CTP_HELLO,
 	CTP_DISCONNET,

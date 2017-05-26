@@ -31,6 +31,30 @@ public:
 		this->isChanged = isChanged;
 	}
 
+	const Position& getPosition() const {
+		return mPosition;
+	}
+
+	void setPosition(const Position& position) {
+		mPosition = position;
+	}
+
+	const Rotation& getRotation() const {
+		return mRotation;
+	}
+
+	void setRotation(const Rotation& rotation) {
+		mRotation = rotation;
+	}
+
+	const Scale& getScale() const {
+		return mScale;
+	}
+
+	void setScale(const Scale& scale) {
+		mScale = scale;
+	}
+
 private:
 	Position mPosition;
 	Rotation mRotation;

@@ -27,6 +27,8 @@ public:
 	void addInputState(InputState ins);
 	vector<InputState>* getInputState();
 	virtual ~ClientObject();
+	bool isBlock = false;
+	bool isJustCreated = true;
 private:
 	uint32_t time = 0;
 	SocketAddress adr;

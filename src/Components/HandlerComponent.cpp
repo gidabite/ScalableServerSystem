@@ -40,16 +40,34 @@ void HandlerComponent::run() {
 	while (isRun) {
 		std::unordered_map<uint32_t, ClientObject*> clients = ClientMeneger::init()->getClient();
 		for (auto it = clients.begin(); it != clients.end(); it++){
-			vector<InputState>* inpSt =  it->second->getInputState();
+			if (it->second != nullptr){
+				while (it->second->isBlock) {usleep(2000);};
+				it->second->isBlock = true;
 
-			for (auto itSt= inpSt->begin(); itSt != inpSt->end(); itSt++){
-				switch(itSt->getState()){
-					case IS_CREATE:{
-						it->second->GetObj()->setIsChanged(true);
-					}
+				vector<InputState>* inpSt =  it->second->getInputState();
+
+				for (auto itSt= inpSt->begin(); itSt != inpSt->end(); itSt++){
+						switch(itSt->getState()){
+							case IS_CREATE:{
+								it->second->GetObj()->setIsChanged(true);
+								break;
+							}
+							case IS_CHANGE:{
+								if (!(it->second->GetObj()->getPosition() == itSt->getPos())) {
+									it->second->GetObj()->setPosition(itSt->getPos());
+									it->second->GetObj()->setRotation(itSt->getRot());
+									it->second->GetObj()->setScale(itSt->getSc());
+									it->second->GetObj()->setIsChanged(true);
+								}
+								break;
+							}
+						}
+
 				}
+				inpSt->clear();
+
+				it->second->isBlock = false;
 			}
-			inpSt->clear();
 		}
 	}
 	return;

@@ -36,3 +36,6 @@ Position::~Position() {
 	// TODO Auto-generated destructor stub
 }
 
+bool Position::operator ==(Position pos) const{
+	return (pos.GetX() == x) && (pos.GetY() == y) && (pos.GetZ() == z);
+}

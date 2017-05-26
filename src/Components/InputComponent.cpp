@@ -42,7 +42,7 @@ void InputComponent::run() {
 		//for (int i = 0; i < 15; i ++){
 			ClientMeneger::init()->Wait();
 		//}
-		usleep(5);
+		usleep(30000);
 	}
 }
 

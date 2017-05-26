@@ -19,7 +19,7 @@ void ClientMeneger::Wait() {
 	ClientObject* client = new ClientObject();
 	int readByteCount = socket->ReceiveFrom(inBuff, 1024, client->GetAddress());
 	if (readByteCount > 0){
-		cout << "Get data"<< endl;
+		//cout << "Get data"<< endl;
 		bool isNew = false;
 		InputMemoryBitStream in(inBuff, readByteCount*8);
 		//ClientTypePocket CTP;
@@ -29,14 +29,11 @@ void ClientMeneger::Wait() {
 			switch(PocketT)
 			{
 				case PT_HELLO:{
-					client->AssociatedWhitObject(new BaseObject(Position(0,0,0), Rotation(0,0,0), Scale(1,1,1)));
+					client->AssociatedWhitObject(new BaseObject(Position(1,0,1), Rotation(0,0,0), Scale(1,1,1)));
 					client->setNetworkId(this->mNextNetworkIdClient);
+					client->addInputState(InputState(InputStateEnumeration::IS_CREATE));
 					this->mNetworkIdToClientObjectMap[this->mNextNetworkIdClient] = client;
 					mNextNetworkIdClient++;
-					client->addInputState(InputState(InputStateEnumeration::IS_CREATE, 0));
-				 	//Pocket pocket(PT_REPDATA);
-					//pocket.AddObject(client->GetObj());
-					//socket->SendTo(pocket.GetStream().GetBufferPtr(), pocket.GetStream().GetByteLength(), client->GetAddress());
 					isNew = true;
 					break;
 				}
@@ -45,26 +42,39 @@ void ClientMeneger::Wait() {
 					uint32_t networkID;
 					in.Read(networkID);
 					ClientObject* client =  this->mNetworkIdToClientObjectMap[networkID];
-					uint16_t timeSync;
-					in.Read(timeSync);
+					if (client){
+						uint16_t timeSync;
 
-					//uint32_t mask;
-					//in.ReadBits(&mask, 5);
-					//float up, down, left, right;
-					//if (mask && IS_UP == IS_UP){
-					//	in.Read(up);
-					//}
-					//if (mask && IS_DOWN == IS_DOWN){
-					//	in.Read(down);
-					//}
-					//if (mask && IS_LEFT == IS_LEFT){
-					//	in.Read(left);
-					//}
-					//if (mask && IS_RIGHT == IS_RIGHT){
-					//	in.Read(right);
-					//}
-					//client->addInputState(InputState(up,down,left,right));
-					break;
+						float x, y, z;
+						in.Read(x);
+						in.Read(y);
+						in.Read(z);
+
+						InputState inpSt(InputStateEnumeration::IS_CHANGE);
+						inpSt.setPos(Position(x,y,z));
+						while (client->isBlock) {usleep(2);};
+						client->isBlock = true;
+						client->addInputState(inpSt);
+						client->isBlock = false;
+
+						//uint32_t mask;
+						//in.ReadBits(&mask, 5);
+						//float up, down, left, right;
+						//if (mask && IS_UP == IS_UP){
+						//	in.Read(up);
+						//}
+						//if (mask && IS_DOWN == IS_DOWN){
+						//	in.Read(down);
+						//}
+						//if (mask && IS_LEFT == IS_LEFT){
+						//	in.Read(left);
+						//}
+						//if (mask && IS_RIGHT == IS_RIGHT){
+						//	in.Read(right);
+						//}
+						//client->addInputState(InputState(up,down,left,right));
+						break;
+					}
 				}
 			}
 		}
