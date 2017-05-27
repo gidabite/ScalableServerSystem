@@ -71,14 +71,15 @@ void OutputComponent::run() {
 					count++;
 					forOldClients.AddObject(it->second->GetObj());
 					it->second->GetObj()->setIsChanged(false);
-					it->second->isJustCreated = false;
 				}
 			}
 		}
 		if (count != 0){
 			for (auto it = clients.begin(); it != clients.end(); it++){
 				if (it->second != nullptr){
-					ClientMeneger::init()->getSocket()->SendTo(forOldClients.GetStream().GetBufferPtr(), forOldClients.GetStream().GetByteLength(), it->second->GetAddress());
+					if (!it->second->isJustCreated)
+						ClientMeneger::init()->getSocket()->SendTo(forOldClients.GetStream().GetBufferPtr(), forOldClients.GetStream().GetByteLength(), it->second->GetAddress());
+					else it->second->isJustCreated = false;
 				}
 			}
 		}
@@ -107,7 +108,7 @@ void OutputComponent::run() {
         //
 		//	}
 		//}
-		usleep(20000);
+		usleep(1000);
 	}
 }
 

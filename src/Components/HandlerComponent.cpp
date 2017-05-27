@@ -53,7 +53,7 @@ void HandlerComponent::run() {
 								break;
 							}
 							case IS_CHANGE:{
-								if (!(it->second->GetObj()->getPosition() == itSt->getPos())) {
+								if (!(it->second->GetObj()->getPosition() == itSt->getPos()) || !(it->second->GetObj()->getRotation()== itSt->getRot())  || !(it->second->GetObj()->getScale() == itSt->getSc())) {
 									it->second->GetObj()->setPosition(itSt->getPos());
 									it->second->GetObj()->setRotation(itSt->getRot());
 									it->second->GetObj()->setScale(itSt->getSc());

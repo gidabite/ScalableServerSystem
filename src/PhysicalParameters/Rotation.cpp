@@ -32,6 +32,10 @@ void Rotation::operator =(Vector3 pos)
 	this->z = pos[2];
 }
 
+bool Rotation::operator ==(Rotation pos) const{
+	return (pos.GetX() == x) && (pos.GetY() == y) && (pos.GetZ() == z);
+}
+
 Rotation::~Rotation() {
 	// TODO Auto-generated destructor stub
 }

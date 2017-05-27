@@ -45,13 +45,24 @@ void ClientMeneger::Wait() {
 					if (client){
 						uint16_t timeSync;
 
+						InputState inpSt(InputStateEnumeration::IS_CHANGE);
+
 						float x, y, z;
 						in.Read(x);
 						in.Read(y);
 						in.Read(z);
-
-						InputState inpSt(InputStateEnumeration::IS_CHANGE);
 						inpSt.setPos(Position(x,y,z));
+
+						in.Read(x);
+						in.Read(y);
+						in.Read(z);
+						inpSt.setRot(Rotation(x,y,z));
+
+						in.Read(x);
+						in.Read(y);
+						in.Read(z);
+						inpSt.setSc(Scale(x,y,z));
+
 						while (client->isBlock) {usleep(2);};
 						client->isBlock = true;
 						client->addInputState(inpSt);

@@ -16,6 +16,7 @@ public:
 	Scale(double x, double y, double z);
 	void operator=(Scale sc);
 	void operator=(Vector3 sc);
+	bool operator==(const Scale pos) const;
 	virtual ~Scale();
 };
 

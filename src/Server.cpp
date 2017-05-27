@@ -16,8 +16,6 @@
 
 using namespace std;
 
-std::vector<BaseObject> objects;
-
 int main(int argc, char* argv[]) {
 
 	ClientMeneger::init(INET, argv[1]);

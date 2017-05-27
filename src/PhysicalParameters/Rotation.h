@@ -16,6 +16,7 @@ public:
 	Rotation(double x, double y, double z);
 	void operator=(Rotation rot);
 	void operator=(Vector3 rot);
+	bool operator==(const Rotation pos) const;
 	virtual ~Rotation();
 };
 

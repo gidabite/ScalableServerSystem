@@ -32,6 +32,10 @@ void Scale::operator =(Vector3 pos)
 	this->z = pos[2];
 }
 
+bool Scale::operator ==(Scale pos) const{
+	return (pos.GetX() == x) && (pos.GetY() == y) && (pos.GetZ() == z);
+}
+
 Scale::~Scale() {
 	// TODO Auto-generated destructor stub
 }
